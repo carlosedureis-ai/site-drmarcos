@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dr. Marcos Vilela - Medicina de Excelência</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                            "primary": "#4f378a",
+                            "background": "#fdf7ff",
+                            "surface-tint": "#6750a4",
+                            "on-secondary-container": "#645a7d",
+                            "error": "#ba1a1a",
+                            "surface-bright": "#fdf7ff",
+                            "on-background": "#1d1b20",
+                            "on-primary-fixed-variant": "#4f378a",
+                            "surface-container-highest": "#e6e0e9",
+                            "on-error": "#ffffff",
+                            "inverse-primary": "#cfbcff",
+                            "tertiary-fixed": "#ffdf93",
+                            "on-error-container": "#93000a",
+                            "on-surface": "#1d1b20",
+                            "on-primary-container": "#e0d2ff",
+                            "surface-variant": "#e6e0e9",
+                            "inverse-surface": "#322f35",
+                            "surface": "#fdf7ff",
+                            "secondary": "#63597c",
+                            "primary-fixed-dim": "#cfbcff",
+                            "surface-container-low": "#f8f2fa",
+                            "on-secondary-fixed": "#1f1635",
+                            "tertiary-fixed-dim": "#e7c365",
+                            "on-primary-fixed": "#22005d",
+                            "surface-container-lowest": "#ffffff",
+                            "on-tertiary": "#ffffff",
+                            "tertiary": "#765b00",
+                            "secondary-fixed": "#e9ddff",
+                            "tertiary-container": "#c9a74d",
+                            "secondary-fixed-dim": "#cdc0e9",
+                            "on-secondary": "#ffffff",
+                            "on-primary": "#ffffff",
+                            "outline-variant": "#cbc4d2",
+                            "on-tertiary-fixed-variant": "#594400",
+                            "inverse-on-surface": "#f5eff7",
+                            "secondary-container": "#e1d4fd",
+                            "surface-container": "#f2ecf4",
+                            "on-surface-variant": "#494551",
+                            "surface-dim": "#ded8e0",
+                            "on-secondary-fixed-variant": "#4b4263",
+                            "primary-fixed": "#e9ddff",
+                            "outline": "#7a7582",
+                            "surface-container-high": "#ece6ee",
+                            "primary-container": "#6750a4",
+                            "on-tertiary-container": "#503d00",
+                            "on-tertiary-fixed": "#241a00",
+                            "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                            "DEFAULT": "0.125rem",
+                            "lg": "0.25rem",
+                            "xl": "0.5rem",
+                            "full": "0.75rem"
+                    },
+                    "spacing": {},
+                    "fontFamily": {
+                            "headline": ["Public Sans", "sans-serif"],
+                            "display": ["Public Sans", "sans-serif"],
+                            "body": ["Public Sans", "sans-serif"],
+                            "label": ["Public Sans", "sans-serif"]
+                    },
+                    "fontSize": {}
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Public Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col antialiased overflow-x-hidden">
+
+<!-- Preloader Overlay -->
+<div id="preloader" class="fixed inset-0 z-[100] bg-[#FDF7FF] flex flex-col items-center justify-center">
+    <div id="preloader-content" class="flex flex-col items-center w-full max-w-sm px-6">
+        <!-- SVG Monogram -->
+        <div class="relative w-40 h-32 mb-8">
+            <svg id="mv-svg" viewBox="0 0 120 100" class="w-full h-full overflow-visible" fill="none">
+                <!-- Approximate elegant MV path -->
+                <path id="mv-path" d="M 20,80 L 20,20 L 50,55 C 35,90 25,100 40,100 C 55,100 50,60 60,20 L 75,80 C 85,100 95,40 105,20" stroke="#4F378A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="opacity-0"/>
+            </svg>
+            <div id="mv-dot" class="absolute w-2.5 h-2.5 rounded-full bg-[#C9A74D] opacity-0" style="top:0; left:0; transform: translate(-50%, -50%);"></div>
+        </div>
+        <!-- Texts -->
+        <div class="text-center w-full">
+            <div class="overflow-hidden mb-2">
+                <p id="preloader-dr" class="font-headline text-[#4F378A] text-xs md:text-base tracking-[0.3em] font-medium opacity-0 translate-y-[100%] uppercase">Dr. Marcos</p>
+            </div>
+            <h1 id="preloader-vilela" class="font-display text-4xl md:text-6xl text-[#4F378A] font-bold opacity-0 scale-95 uppercase tracking-wide">Vilela</h1>
+            <p id="preloader-medicina" class="font-body text-[#4F378A] text-[0.65rem] md:text-sm tracking-widest mt-4 opacity-0 uppercase">Medicina de Excelência</p>
+        </div>
+    </div>
+</div>
+
+<!-- TopNavBar Component -->
+<header class="bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md docked full-width top-0 sticky border-b border-outline-variant/30 shadow-sm z-50">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
+<!-- Brand -->
+<!-- Brand Logo -->
+<a class="text-xl font-display font-bold text-primary dark:text-primary-fixed flex items-center gap-3 hover:opacity-80 transition-opacity" href="#">
+    <svg viewBox="0 0 120 100" class="w-10 h-8 overflow-visible text-primary" fill="none">
+        <path d="M 20,80 L 20,20 L 50,55 C 35,90 25,100 40,100 C 55,100 50,60 60,20 L 75,80 C 85,100 95,40 105,20" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="105" cy="20" r="6" fill="#C9A74D" />
+    </svg>
+    <span class="tracking-wide hidden sm:block">Dr. Marcos Vilela</span>
+</a>
+<!-- Navigation Links (Desktop) -->
+<nav class="hidden md:flex items-center gap-8 font-headline text-label-lg tracking-wide">
+<a class="text-primary dark:text-primary-fixed border-b-2 border-primary pb-1 cursor-pointer active:opacity-70" href="#home">Home</a>
+<a class="text-on-surface-variant dark:text-outline hover:text-primary transition-colors hover:text-primary dark:hover:text-primary-fixed transition-all duration-300 cursor-pointer active:opacity-70" href="#sobre">Sobre Mim</a>
+<a class="text-on-surface-variant dark:text-outline hover:text-primary transition-colors hover:text-primary dark:hover:text-primary-fixed transition-all duration-300 cursor-pointer active:opacity-70" href="#servicos">Serviços</a>
+<a class="text-on-surface-variant dark:text-outline hover:text-primary transition-colors hover:text-primary dark:hover:text-primary-fixed transition-all duration-300 cursor-pointer active:opacity-70" href="#resultados">Resultados</a>
+<a class="text-on-surface-variant dark:text-outline hover:text-primary transition-colors hover:text-primary dark:hover:text-primary-fixed transition-all duration-300 cursor-pointer active:opacity-70" href="#contato">Contato</a>
+</nav>
+<!-- Trailing Action -->
+<a class="hidden md:inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-primary text-on-primary font-label font-medium hover:bg-primary-container hover:text-on-primary-container transition-colors shadow-sm" href="#contato">
+                Agendar Consulta
+            </a>
+<!-- Mobile Menu Toggle -->
+<button id="mobile-menu-btn" class="md:hidden text-primary p-2 focus:outline-none">
+<span class="material-symbols-outlined text-3xl">menu</span>
+</button>
+</div>
+<!-- Mobile Menu Overlay -->
+<div id="mobile-menu" class="fixed inset-0 z-[60] bg-surface/95 backdrop-blur-xl flex flex-col justify-center items-center gap-8 opacity-0 pointer-events-none transition-opacity duration-300 md:hidden">
+    <button id="mobile-menu-close" class="absolute top-6 right-6 text-primary p-2 focus:outline-none">
+        <span class="material-symbols-outlined text-4xl">close</span>
+    </button>
+    <a class="mobile-link text-3xl font-display font-medium text-on-background hover:text-primary transition-colors" href="#home">Home</a>
+    <a class="mobile-link text-3xl font-display font-medium text-on-background hover:text-primary transition-colors" href="#sobre">Sobre Mim</a>
+    <a class="mobile-link text-3xl font-display font-medium text-on-background hover:text-primary transition-colors" href="#servicos">Serviços</a>
+    <a class="mobile-link text-3xl font-display font-medium text-on-background hover:text-primary transition-colors" href="#resultados">Resultados</a>
+    <a class="mobile-link text-3xl font-display font-medium text-on-background hover:text-primary transition-colors" href="#contato">Contato</a>
+    <a class="mobile-link mt-4 px-8 py-3 rounded-full bg-primary text-on-primary font-label text-xl font-medium shadow-sm" href="#contato">Agendar Consulta</a>
+</div>
+</header>
+<main class="flex-grow">
+<!-- Hero Section -->
+<section class="relative pt-32 pb-32 overflow-hidden bg-surface-bright flex items-center min-h-[100vh]" id="home">
+    <div class="absolute inset-0 z-0 opacity-40 parallax-bg" style="background-image: radial-gradient(circle at 80% 20%, theme('colors.secondary-container') 0%, transparent 40%), radial-gradient(circle at 20% 80%, theme('colors.primary-fixed') 0%, transparent 40%);"></div>
+    
+    <div class="absolute inset-0 flex items-center justify-center z-0 opacity-5 pointer-events-none overflow-hidden select-none parallax-bg">
+        <h1 class="text-[7rem] sm:text-[12rem] md:text-[22rem] font-display font-black text-primary leading-none whitespace-nowrap">VILELA</h1>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full">
+        <div class="lg:col-span-8 flex flex-col items-start text-left space-y-8 hero-content">
+            <div class="overflow-hidden"><h2 class="reveal-text-hero text-primary font-semibold tracking-wider uppercase text-sm md:text-base ml-1">Medicina de Excelência</h2></div>
+            <div class="overflow-hidden">
+                <h1 class="reveal-text-hero text-5xl md:text-8xl font-display font-extrabold text-on-background leading-[1.05] tracking-tight">
+                    Dr. Marcos <br/><span class="text-primary">Vilela</span>
+                </h1>
+            </div>
+            <div class="overflow-hidden">
+                <p class="reveal-text-hero text-xl md:text-2xl text-on-surface-variant font-body max-w-2xl font-light leading-relaxed">
+                    Cuidado personalizado e avançado para sua saúde. Experiência aliada à tecnologia para resultados excepcionais no seu bem-estar.
+                </p>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-4 pt-4 reveal-text-hero">
+                <a class="inline-flex items-center justify-center px-8 py-4 rounded-full bg-primary text-on-primary font-label text-lg font-medium hover:bg-surface-tint hover:shadow-lg hover:-translate-y-1 transition-all duration-300" href="#contato">
+                    Agendar Consulta
+                    <span class="material-symbols-outlined ml-2">arrow_forward</span>
+                </a>
+                <a class="inline-flex items-center justify-center px-8 py-4 rounded-full bg-surface text-primary border border-outline-variant font-label text-lg font-medium hover:bg-surface-container hover:border-primary transition-all duration-300" href="#sobre">
+                    Conhecer o Doutor
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Sobre Mim Section -->
+<section class="py-24 bg-surface" id="sobre">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<!-- Image -->
+<div class="reveal-card relative w-full aspect-[3/4] md:aspect-square lg:aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl bg-surface-container">
+<img alt="Dr. Marcos Vilela" class="parallax-bg w-full h-[120%] object-cover object-top -top-[10%] relative" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHSLZWINU9jap4NyVDJ7v341rH757KXavbWAMxXJQxH9bAh-vFn7zTKJTaG02V-gee1dnaeHt_YQuHBHqir5wHjqf-tUglFH2B2fBX5kEMocUP3DdGSIqo-AkJzttRyKA4MPkidDUWfcUgR1qL3w3qE8n2GvUE_ebhEbxsyUnSRRm6s-4yyiA06y6RvyrtlYYb3Y7E_tcImk66kFC_CpPymgCicOmjq8mnFdFqnF7K8UyW759hncaXjVtFuR8fIwHkswNGSL7jhGSk"/>
+<div class="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-[2rem]"></div>
+</div>
+<!-- Content -->
+<div class="flex flex-col space-y-6">
+<div class="reveal-text inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary-container/50 text-on-secondary-container w-fit mb-4">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label text-sm font-semibold">CRM-XX 123456 | RQE 7890</span>
+</div>
+<h2 class="reveal-text text-4xl md:text-5xl font-display font-bold text-on-background tracking-tight">Dedicação e Experiência em prol da sua saúde.</h2>
+<div class="reveal-text h-1 w-24 bg-primary rounded-full"></div>
+<div class="prose prose-lg text-on-surface-variant font-body space-y-4">
+<p class="reveal-text">
+                                Com mais de uma década de dedicação exclusiva à medicina, minha prática é fundamentada em três pilares: <strong>ética profissional, atualização contínua e, acima de tudo, o atendimento humanizado.</strong>
+</p>
+<p class="reveal-text">
+                                Acredito que cada paciente possui uma história única e demandas específicas. Por isso, meu foco não é apenas tratar sintomas, mas compreender o indivíduo como um todo, proporcionando um ambiente de escuta ativa e confiança.
+                            </p>
+<p class="reveal-text">
+                                Minha formação acadêmica rigorosa e constante participação em congressos internacionais garantem que os tratamentos oferecidos aqui estejam alinhados com o que há de mais moderno e seguro na literatura médica global.
+                            </p>
+</div>
+<div class="grid grid-cols-2 gap-6 pt-8 reveal-text">
+<div class="border-l-4 border-primary pl-4">
+<p class="text-3xl font-display font-bold text-primary">15+</p>
+<p class="text-sm font-label text-on-surface-variant">Anos de Experiência</p>
+</div>
+<div class="border-l-4 border-primary pl-4">
+<p class="text-3xl font-display font-bold text-primary">5k+</p>
+<p class="text-sm font-label text-on-surface-variant">Pacientes Atendidos</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Serviços Section (Bento Grid Style) -->
+<section class="py-24 bg-surface-container-low" id="servicos">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center max-w-3xl mx-auto mb-16">
+<h2 class="reveal-text text-4xl font-display font-bold text-on-background mb-4 tracking-tight">Áreas de Atuação</h2>
+<p class="reveal-text text-lg text-on-surface-variant font-body">Oferecemos um portfólio completo de serviços desenhados para promover sua longevidade e qualidade de vida.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Service 1 -->
+<div class="reveal-card bg-surface rounded-2xl p-8 border border-outline-variant/30 hover:border-primary/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group flex flex-col h-full">
+<div class="w-14 h-14 rounded-xl bg-primary-container text-on-primary-container flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">stethoscope</span>
+</div>
+<h3 class="text-2xl font-headline font-semibold text-on-background mb-3">Consulta Especializada</h3>
+<p class="text-on-surface-variant font-body mb-6 flex-grow">Avaliação clínica minuciosa, diagnóstico preciso e planejamento terapêutico focado nas necessidades individuais de cada paciente.</p>
+<a class="text-primary font-label font-medium inline-flex items-center group-hover:underline" href="#contato">Saiba mais <span class="material-symbols-outlined text-sm ml-1">arrow_forward</span></a>
+</div>
+<!-- Service 2 -->
+<div class="reveal-card bg-surface rounded-2xl p-8 border border-outline-variant/30 hover:border-primary/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group flex flex-col h-full">
+<div class="w-14 h-14 rounded-xl bg-tertiary-container text-on-tertiary-container flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">monitor_heart</span>
+</div>
+<h3 class="text-2xl font-headline font-semibold text-on-background mb-3">Acompanhamento Preventivo</h3>
+<p class="text-on-surface-variant font-body mb-6 flex-grow">Check-ups regulares e protocolos de prevenção baseados em evidências científicas para manter sua saúde sempre em dia.</p>
+<a class="text-primary font-label font-medium inline-flex items-center group-hover:underline" href="#contato">Saiba mais <span class="material-symbols-outlined text-sm ml-1">arrow_forward</span></a>
+</div>
+<!-- Service 3 -->
+<div class="reveal-card bg-surface rounded-2xl p-8 border border-outline-variant/30 hover:border-primary/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group flex flex-col h-full">
+<div class="w-14 h-14 rounded-xl bg-secondary-container text-on-secondary-container flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">biotech</span>
+</div>
+<h3 class="text-2xl font-headline font-semibold text-on-background mb-3">Procedimentos Avançados</h3>
+<p class="text-on-surface-variant font-body mb-6 flex-grow">Realização de procedimentos minimamente invasivos com equipamentos de última geração, garantindo conforto e rápida recuperação.</p>
+<a class="text-primary font-label font-medium inline-flex items-center group-hover:underline" href="#contato">Saiba mais <span class="material-symbols-outlined text-sm ml-1">arrow_forward</span></a>
+</div>
+</div>
+</div>
+</section>
+<!-- Resultados / Depoimentos Section -->
+<section class="py-24 bg-surface relative overflow-hidden" id="resultados">
+<!-- Decorative Background Element -->
+<div class="absolute -right-64 -top-64 w-96 h-96 bg-primary-fixed rounded-full mix-blend-multiply filter blur-3xl opacity-50"></div>
+<div class="max-w-7xl mx-auto px-6 relative z-10">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+<div class="max-w-2xl">
+<h2 class="reveal-text text-4xl font-display font-bold text-on-background mb-4 tracking-tight">O que dizem os pacientes</h2>
+<p class="reveal-text text-lg text-on-surface-variant font-body">A confiança e os resultados positivos são os maiores reconhecimentos do nosso trabalho.</p>
+</div>
+<div class="flex gap-2 reveal-text">
+<button class="w-12 h-12 rounded-full border border-outline flex items-center justify-center text-on-surface hover:bg-surface-variant transition-colors"><span class="material-symbols-outlined">arrow_back</span></button>
+<button class="w-12 h-12 rounded-full bg-primary text-on-primary flex items-center justify-center hover:bg-surface-tint transition-colors"><span class="material-symbols-outlined">arrow_forward</span></button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Testimonial 1 -->
+<div class="reveal-card bg-surface-container-low p-8 rounded-[1.5rem] border border-outline-variant/20 shadow-sm relative">
+<span class="material-symbols-outlined absolute top-6 right-6 text-primary/20 text-5xl" style="font-variation-settings: 'FILL' 1;">format_quote</span>
+<div class="flex items-center gap-1 mb-4 text-tertiary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-on-surface font-body italic mb-6 leading-relaxed">"O Dr. Marcos transmite uma calma imensa. Fui para uma consulta de rotina e saí com um plano completo de saúde preventiva. Atendimento impecável."</p>
+<div class="flex items-center gap-4 mt-auto">
+<div class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold font-headline">AM</div>
+<div>
+<h4 class="font-semibold text-on-background font-headline">Ana Martins</h4>
+<p class="text-xs text-on-surface-variant font-label">Paciente desde 2021</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 2 -->
+<div class="reveal-card bg-surface-container-low p-8 rounded-[1.5rem] border border-outline-variant/20 shadow-sm relative">
+<span class="material-symbols-outlined absolute top-6 right-6 text-primary/20 text-5xl" style="font-variation-settings: 'FILL' 1;">format_quote</span>
+<div class="flex items-center gap-1 mb-4 text-tertiary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-on-surface font-body italic mb-6 leading-relaxed">"Profissionalismo e empatia definem. O procedimento foi tranquilo e o acompanhamento pós foi melhor ainda. Recomendo de olhos fechados."</p>
+<div class="flex items-center gap-4 mt-auto">
+<div class="w-12 h-12 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold font-headline">CR</div>
+<div>
+<h4 class="font-semibold text-on-background font-headline">Carlos Roberto</h4>
+<p class="text-xs text-on-surface-variant font-label">Paciente desde 2023</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 3 -->
+<div class="reveal-card bg-surface-container-low p-8 rounded-[1.5rem] border border-outline-variant/20 shadow-sm relative hidden lg:block">
+<span class="material-symbols-outlined absolute top-6 right-6 text-primary/20 text-5xl" style="font-variation-settings: 'FILL' 1;">format_quote</span>
+<div class="flex items-center gap-1 mb-4 text-tertiary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-on-surface font-body italic mb-6 leading-relaxed">"A infraestrutura da clínica é excelente e o Dr. Marcos é muito atencioso, explica tudo com detalhes e tira todas as dúvidas sem pressa."</p>
+<div class="flex items-center gap-4 mt-auto">
+<div class="w-12 h-12 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center font-bold font-headline">JL</div>
+<div>
+<h4 class="font-semibold text-on-background font-headline">Juliana Lima</h4>
+<p class="text-xs text-on-surface-variant font-label">Paciente desde 2022</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Contato Section -->
+<section class="py-24 bg-surface-container-highest" id="contato">
+<div class="max-w-7xl mx-auto px-6">
+<div class="reveal-card grid grid-cols-1 lg:grid-cols-2 gap-16 bg-surface rounded-[2rem] p-8 md:p-12 shadow-xl border border-outline-variant/10">
+<!-- Contact Info -->
+<div class="flex flex-col space-y-10">
+<div>
+<h2 class="reveal-text text-4xl font-display font-bold text-on-background mb-4">Agende sua Consulta</h2>
+<p class="reveal-text text-on-surface-variant font-body">Estamos prontos para recebê-lo. Preencha o formulário ou entre em contato diretamente pelos nossos canais.</p>
+</div>
+<div class="space-y-6 reveal-text">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+<div>
+<h4 class="font-semibold text-on-background font-headline">Endereço</h4>
+<p class="text-on-surface-variant font-body text-sm mt-1">Av. Brasil, 1234 - Sala 501<br/>Edifício Medical Center<br/>São Paulo, SP</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined">mail</span>
+</div>
+<div>
+<h4 class="font-semibold text-on-background font-headline">E-mail</h4>
+<p class="text-on-surface-variant font-body text-sm mt-1">contato@drmarcosvilela.com.br</p>
+</div>
+</div>
+</div>
+<div class="pt-6 border-t border-outline-variant/30">
+<a class="inline-flex items-center justify-center w-full sm:w-auto px-8 py-4 rounded-xl bg-[#25D366] hover:bg-[#1EBE5D] text-white font-label text-lg font-medium shadow-md transition-all duration-300 gap-3" href="#">
+<span class="material-symbols-outlined text-2xl">chat</span>
+                                Falar no WhatsApp
+                            </a>
+</div>
+</div>
+<!-- Contact Form -->
+<div class="bg-surface-container-low rounded-2xl p-8 border border-outline-variant/20">
+<form class="space-y-6">
+<div>
+<label class="block text-sm font-medium text-on-surface mb-2 font-label" for="name">Nome Completo</label>
+<input class="w-full rounded-lg border-outline-variant bg-surface px-4 py-3 text-on-surface focus:border-primary focus:ring-primary font-body" id="name" placeholder="Seu nome" type="text"/>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block text-sm font-medium text-on-surface mb-2 font-label" for="phone">Telefone</label>
+<input class="w-full rounded-lg border-outline-variant bg-surface px-4 py-3 text-on-surface focus:border-primary focus:ring-primary font-body" id="phone" placeholder="(00) 00000-0000" type="tel"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-on-surface mb-2 font-label" for="email">E-mail</label>
+<input class="w-full rounded-lg border-outline-variant bg-surface px-4 py-3 text-on-surface focus:border-primary focus:ring-primary font-body" id="email" placeholder="seu@email.com" type="email"/>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-on-surface mb-2 font-label" for="message">Mensagem (Opcional)</label>
+<textarea class="w-full rounded-lg border-outline-variant bg-surface px-4 py-3 text-on-surface focus:border-primary focus:ring-primary font-body" id="message" placeholder="Como podemos ajudar?" rows="4"></textarea>
+</div>
+<button class="w-full py-4 rounded-xl bg-primary text-on-primary font-label font-semibold text-lg hover:bg-surface-tint transition-colors shadow-md" type="button">
+                                Solicitar Agendamento
+                            </button>
+</form>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Component -->
+<footer class="bg-surface-container-low dark:bg-surface-container-lowest full-width py-12 border-t border-outline-variant/20 flat no shadows font-body text-body-small">
+<div class="flex flex-col md:flex-row justify-between items-center gap-8 px-6 max-w-7xl mx-auto text-center md:text-left">
+<div class="flex flex-col items-center md:items-start gap-2">
+<span class="text-lg font-display font-semibold text-on-surface flex items-center gap-3">
+    <svg viewBox="0 0 120 100" class="w-8 h-6 overflow-visible text-primary" fill="none">
+        <path d="M 20,80 L 20,20 L 50,55 C 35,90 25,100 40,100 C 55,100 50,60 60,20 L 75,80 C 85,100 95,40 105,20" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="105" cy="20" r="6" fill="#C9A74D" />
+    </svg>
+    <span class="tracking-wide">Dr. Marcos Vilela</span>
+</span>
+<p class="text-on-surface-variant text-sm">
+                    © 2024 Dr. Marcos Vilela. Todos os direitos reservados. CRM-XX 123456
+                </p>
+</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="text-on-surface-variant hover:text-primary underline transition-all opacity-90 hover:opacity-100" href="#">Privacidade</a>
+<a class="text-on-surface-variant hover:text-primary underline transition-all opacity-90 hover:opacity-100" href="#">Termos de Uso</a>
+<a class="text-on-surface-variant hover:text-primary underline transition-all opacity-90 hover:opacity-100" href="#">WhatsApp</a>
+<a class="text-on-surface-variant hover:text-primary underline transition-all opacity-90 hover:opacity-100" href="#">Instagram</a>
+</div>
+</div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/MotionPathPlugin.min.js"></script>
+<script>
+    gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
+    
+    const preloader = document.getElementById('preloader');
+    
+    // Accessibility & Session checks
+    const prefersReducedMotion = false; // window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    // TEMPORÁRIO: desabilitando check de sessão para que você possa testar sem precisar de aba anônima
+    const hasSeenPreloader = false; // sessionStorage.getItem('preloader_shown');
+
+    // Fallback se o JS falhar já está coberto pela execução padrão. Aqui removemos se o user já viu.
+    if (prefersReducedMotion || hasSeenPreloader) {
+        // Fast fade or instant hide
+        gsap.to(preloader, { 
+            opacity: 0, 
+            duration: prefersReducedMotion ? 0.5 : 0, 
+            onComplete: () => {
+                preloader.style.display = "none";
+                document.body.style.overflow = "";
+                playHeroAnimation(0);
+            }
+        });
+    } else {
+        // Run full animation
+        document.body.style.overflow = "hidden";
+        window.scrollTo(0,0);
+        sessionStorage.setItem('preloader_shown', 'true');
+
+        const path = document.getElementById("mv-path");
+        const pathLength = path.getTotalLength();
+        
+        // Setup SVG Path for drawing
+        gsap.set(path, {
+            strokeDasharray: pathLength,
+            strokeDashoffset: pathLength,
+            opacity: 1
+        });
+
+        const preTl = gsap.timeline({ defaults: { ease: "power3.inOut" } });
+
+        // 1. Draw Path & Move Dot
+        preTl.to(path, {
+            strokeDashoffset: 0,
+            duration: 1.5,
+            delay: 0.3,
+            ease: "power2.inOut"
+        }, "start")
+        .to("#mv-dot", {
+            opacity: 1,
+            duration: 0.1
+        }, "start")
+        .to("#mv-dot", {
+            motionPath: {
+                path: "#mv-path",
+                align: "#mv-path",
+                alignOrigin: [0.5, 0.5]
+            },
+            duration: 1.5,
+            delay: 0.3,
+            ease: "power2.inOut"
+        }, "start")
+        // 2. Reveal DR. MARCOS
+        .to("#preloader-dr", {
+            y: "0%",
+            opacity: 1,
+            duration: 0.8,
+            ease: "power3.out"
+        }, "-=0.3")
+        // 3. Reveal VILELA (Scale 0.96 to 1)
+        .to("#preloader-vilela", {
+            scale: 1,
+            opacity: 1,
+            duration: 1,
+            ease: "power3.out"
+        }, "-=0.5")
+        // 4. Reveal MEDICINA DE EXCELÊNCIA (Fade + letter spacing)
+        .fromTo("#preloader-medicina", 
+            { letterSpacing: "0.1em", opacity: 0 },
+            { letterSpacing: "0.25em", opacity: 1, duration: 1, ease: "power3.out" }
+        , "-=0.7")
+        // 5. Hold for 0.5s, then move everything up and fade out
+        .to("#preloader-content", {
+            y: -30,
+            opacity: 0,
+            duration: 0.8,
+            delay: 0.5,
+            ease: "power3.inOut"
+        })
+        .to("#preloader", {
+            opacity: 0,
+            duration: 0.5,
+            onComplete: () => {
+                preloader.style.display = "none";
+                document.body.style.overflow = "";
+            }
+        }, "-=0.4");
+
+        // Sync hero entry
+        playHeroAnimation(3.5);
+    }
+
+    function playHeroAnimation(delayTime) {
+        gsap.fromTo(".reveal-text-hero", 
+            { y: 50, autoAlpha: 0, clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" },
+            { 
+                y: 0, 
+                autoAlpha: 1, 
+                clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+                duration: 1.2, 
+                stagger: 0.15, 
+                ease: "power3.out",
+                delay: delayTime
+            }
+        );
+    }
+
+    // --- SCROLL ANIMATIONS ---
+    // Standard text reveals
+    const revealTexts = document.querySelectorAll(".reveal-text");
+    revealTexts.forEach((text) => {
+        gsap.fromTo(text, 
+            { y: 40, autoAlpha: 0 },
+            {
+                scrollTrigger: {
+                    trigger: text,
+                    start: "top 85%",
+                },
+                y: 0,
+                autoAlpha: 1,
+                duration: 1,
+                ease: "power3.out"
+            }
+        );
+    });
+
+    // Cards / Bento Grid
+    const revealCards = document.querySelectorAll(".reveal-card");
+    revealCards.forEach((card, i) => {
+        gsap.fromTo(card,
+            { y: 60, autoAlpha: 0, scale: 0.95 },
+            {
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 85%",
+                },
+                y: 0,
+                autoAlpha: 1,
+                scale: 1,
+                duration: 0.8,
+                ease: "back.out(1.2)"
+            }
+        );
+    });
+
+    // Parallax Backgrounds
+    const parallaxBgs = document.querySelectorAll(".parallax-bg");
+    parallaxBgs.forEach((bg) => {
+        gsap.to(bg, {
+            yPercent: 15,
+            ease: "none",
+            scrollTrigger: {
+                trigger: bg.parentElement,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true
+            }
+        });
+    });
+
+    // --- MOBILE MENU ---
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    function toggleMobileMenu() {
+        if (!mobileMenu) return;
+        const isClosed = mobileMenu.classList.contains('pointer-events-none');
+        if (isClosed) {
+            mobileMenu.classList.remove('pointer-events-none', 'opacity-0');
+            mobileMenu.classList.add('opacity-100');
+            document.body.style.overflow = 'hidden';
+        } else {
+            mobileMenu.classList.add('pointer-events-none', 'opacity-0');
+            mobileMenu.classList.remove('opacity-100');
+            document.body.style.overflow = '';
+        }
+    }
+
+    if (mobileMenuBtn && mobileMenuClose) {
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        mobileMenuClose.addEventListener('click', toggleMobileMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', toggleMobileMenu));
+    }
+</script>
+</body></html>
+
